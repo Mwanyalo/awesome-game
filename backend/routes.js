@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { verifyToken } = require("./middlewares/authJwt");
 
 const {
   registerValidationRules,
@@ -12,7 +13,7 @@ const { updateUserById, getUserById } = require("./controllers/UserController");
 
 router.post("/login", loginValidationRules(), validate, login);
 router.post("/register", registerValidationRules(), validate, register);
-router.post("/game/:id", updateUserById);
-router.post("/user/:id", getUserById);
+router.post("/game/:id", verifyToken, updateUserById);
+router.post("/user/:id", verifyToken, getUserById);
 
 module.exports = router;
