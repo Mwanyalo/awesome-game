@@ -33,3 +33,4 @@ config
 /config/prod.json
 
 frontend/node_modules
+
